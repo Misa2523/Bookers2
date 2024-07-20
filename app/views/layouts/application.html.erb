@@ -6,11 +6,27 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- FontAwesomeの読み込み (※cssの読み込みより前に書く)-->
+    <script src="https://kit.fontawesome.com/fc3bd943f3.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>   <!--devise側で用意しているヘルパーメソッド-->
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "新規登録", new_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_user_session_path %>
+        </li>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
