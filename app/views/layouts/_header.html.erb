@@ -1,0 +1,50 @@
+<!--部分テンプレート（共通化するコードをまとめる）-->
+<!--ヘッダー-->
+
+<header>
+
+  <!--navbar：ナビゲーションバー表示、navbar-expand-[ブレークポイント]：ブレイクポイントに応じてナビゲーションバーとナビゲーションアイコンを切り替え表示、
+                            navbar-[カラースキーム]：ナビゲーションのカラースキームの指定j-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <!--navbar-brand：ロゴに使用されるnavbarのサポートclass-->
+      <a class="navbar-brand" href="/"><span>Bookers</span></a>
+      <!--ナビゲーションアイコン（ハンバーガーメニュー）の表示部分-->
+          <!--navbar-toggler：ナビゲーションアイコンの枠部分、navbar-toggler-icon：ナビゲーションアイコンの三本線の部分-->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--ナビゲーションアイコンの開閉する動作-->
+          <!--ナビゲーションアイコンを開く前に隠しておきたいメニューは「collapse」classが付与された要素の中に入れる-->
+          <!--「collapse」classを付与している要素に任意のidを付与-->
+          <!--付与したidは「navbar-toggler」classが付与される要素のdata-targetに指定する（頭にセレクタ#をつける）-->
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li>
+            <%= link_to root_path, class:"nav-link text-light" do%>
+              <i class="fa-solid fa-house"></i> Home
+            <% end %>
+          </li>
+          <li>
+            <%= link_to about_path, class:"nav-link text-light" do %>
+              <i class="fa-solid fa-link"></i> About
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path, class:"nav-link text-light" do %>
+              <i class="fa-solid fa-user-plus"></i>
+              Sign up
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path, class:"nav-link text-light" do %>
+              <i class="fa-solid fa-right-to-bracket"></i>
+              Log in
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
