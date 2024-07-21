@@ -21,30 +21,59 @@
           <!--付与したidは「navbar-toggler」classが付与される要素のdata-targetに指定する（頭にセレクタ#をつける）-->
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <li>
-            <%= link_to root_path, class:"nav-link text-light" do%>
-              <i class="fa-solid fa-house"></i> Home
-            <% end %>
-          </li>
-          <li>
-            <%= link_to about_path, class:"nav-link text-light" do %>
-              <i class="fa-solid fa-link"></i> About
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_user_registration_path, class:"nav-link text-light" do %>
-              <i class="fa-solid fa-user-plus"></i>
-              Sign up
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_user_session_path, class:"nav-link text-light" do %>
-              <i class="fa-solid fa-right-to-bracket"></i>
-              Log in
-            <% end %>
-          </li>
+
+          <% if user_signed_in? %>   <!--ログイン後のヘッダーメニュー-->
+            <li>
+              <!--Homeリンク-->   <!--current_userは自分のログインしているユーザーiDを自動で取得-->
+              <%= link_to user_path(current_user), class:"nav-link text-light" do %>
+                <i class="fa-solid fa-house"></i> Home
+              <% end %>
+            </li>     <!--↑か↓のリンク修正-->
+            <li>
+              <%= link_to users_path, class:"nav-link text-light" do %>
+                <i class="fa-solid fa-link"></i> Users
+              <% end %>
+            </li>
+            <li>
+              <%= link_to books_path, class:"nav-link text-light" do %>
+                <i class="fa-solid fa-link"></i> Books
+              <% end %>
+            </li>
+            <li>
+              <!--Log outリンク-->
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              <!--<i class="fa-solid fa-right-from-bracket"></i>-->
+            </li>
+
+          <% else %>  <!--ログイン前のヘッダーメニュー-->
+            <li>
+              <%= link_to root_path, class:"nav-link text-light" do%>
+                <i class="fa-solid fa-house"></i> Home
+              <% end %>
+            </li>
+            <li>
+              <%= link_to home_about_path, class:"nav-link text-light" do %>
+                <i class="fa-solid fa-link"></i> About
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path, class:"nav-link text-light" do %>
+                <i class="fa-solid fa-user-plus"></i>
+                Sign up
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_session_path, class:"nav-link text-light" do %>
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Log in
+              <% end %>
+            </li>
+          <% end %>
+
         </ul>
       </div>
+
     </div>
   </nav>
+
 </header>

@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
-  get 'books/index'
-  get 'books/show'
-  get 'books/edit'
-  get 'books/update'
-  #アプリを起動した瞬間にtopアクションを実行
-  root to: 'homes#top'
-  get '/about', to: 'pages#about'
-
-      #↓消すかも？
-  get 'home/about', to: "homes#about"
 
   devise_for :users
+  #アプリを起動した瞬間にtopアクションを実行
+  root to: 'homes#top'
+  get 'home/about', to: "homes#about"
+  resources :users, only: [:index, :show, :edit, :update]
+  resources :books, only: [:index, :show, :create, :edit, :update, :destroy]
+
+      # ↓消す？
+  #get '/about', to: 'pages#about'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
