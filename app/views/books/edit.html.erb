@@ -1,2 +1,26 @@
-<h1>Books#edit</h1>
-<p>Find me in app/views/books/edit.html.erb</p>
+<!--書籍の編集画面-->
+
+<h2>Editing Book</h2>
+
+<%= form_with model: @book do |f| %>
+
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+
+  <h4>Option</h4>
+  <%= f.text_area :body %>
+  <br>
+
+  <!--アップデートボタン-->
+  <%= f.submit 'Update Book'%>
+
+<% end %>
+
+<!--ユーザーの詳細画面(users/show.html.erb)へ遷移-->
+<%= link_to 'Show', user_path(@book) %>
+|
+<!--書籍の一覧画面(books/index.html.erb)へ遷移-->
+<%= link_to 'Back', books_path %>
+
+
+

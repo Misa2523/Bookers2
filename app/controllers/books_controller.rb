@@ -23,10 +23,17 @@ class BooksController < ApplicationController
     redirect_to book_path(@book.id)
   end
 
+  #書籍の編集画面
   def edit
+    @book = Book.find(params[:id])
   end
 
+  #書籍の編集画面での更新
   def update
+    book = Book.find(params[:id])
+
+    #更新後、書籍の詳細画面(books/show.html.erb)に遷移
+    redirect_to books_path
   end
 
   #ストロングパラメータ
