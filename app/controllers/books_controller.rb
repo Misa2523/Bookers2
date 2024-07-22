@@ -28,11 +28,24 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
-  #書籍の編集画面での更新
+  #書籍の編集画面での更新アクション
   def update
+    #更新後にリダイレクトし、変数をViewファイルに渡す必要がない
+    #よってbook変数はupdateアクション内だけで使用するため、ローカル変数としている
     book = Book.find(params[:id])
+    #データ（レコード）を更新
+    book.update(params)
+    #更新後、書籍の詳細画面(books/show.html.erb)へリダイレクト
+    redirect_to books_path
+  end
 
-    #更新後、書籍の詳細画面(books/show.html.erb)に遷移
+  #書籍の編集画面での削除アクション
+  def destroy
+    #データ（レコード）を１件取得
+    book = Book.find(params[:id])
+    #データを削除
+    book.destroy
+    #削除後、書籍の一覧画面(books/index.html.erb)へリダイレクト
     redirect_to books_path
   end
 
