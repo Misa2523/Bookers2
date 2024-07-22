@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'home/about', to: "homes#about"
   resources :users, only: [:index, :show, :edit, :update]
   resources :books, only: [:index, :show, :create, :edit, :update, :destroy]
+  #create：書籍の投稿処理、update：更新処理、destroy：削除処理
 
       # ↓消す？
   #get '/about', to: 'pages#about'

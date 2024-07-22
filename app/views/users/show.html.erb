@@ -8,13 +8,13 @@
 	<!--モックのため固定値や未実装の部分アリ、完成前に修正する-->
 	    <table class='table'>
 	      <tr>
-	 <!-- 固定値になっているので変数を使う -->
-	        <%= image_tag 'default-image.jpg' %>
+			<!--ユーザー画像-->
+	        <%= image_tag @user.get_profile_image(100,100) %>
 	      </tr>
 	      <tr>
 	        <th>name</th>
-	 <!-- 固定値になっているので変数を使う -->
-	        <th>DMM太郎</th>
+	        <!--ユーザー名-->
+	        <th><%= @user.name %></th>
 	      </tr>
 	      <tr>
 	        <th>introduction</th>

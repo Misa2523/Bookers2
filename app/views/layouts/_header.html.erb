@@ -24,7 +24,7 @@
 
           <% if user_signed_in? %>   <!--ログイン後のヘッダーメニュー-->
             <li>
-              <!--Homeリンク-->   <!--current_userは自分のログインしているユーザーiDを自動で取得-->
+              <!--current_userは自分のログインしているユーザーiDを自動で取得-->
               <%= link_to user_path(current_user), class:"nav-link text-light" do %>
                 <i class="fa-solid fa-house"></i> Home
               <% end %>
@@ -41,8 +41,10 @@
             </li>
             <li>
               <!--Log outリンク-->
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-              <!--<i class="fa-solid fa-right-from-bracket"></i>-->
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa-solid fa-right-from-bracket"></i> Log out
+              <% end %>
+              <!--link_to "ログアウト", destroy_user_session_path, method: :delete-->
             </li>
 
           <% else %>  <!--ログイン前のヘッダーメニュー-->
