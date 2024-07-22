@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
     user_path(current_user)
   end
 
+  #サインアウト後、トップ画面に遷移
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+
   protected   #privateとは違い呼び出された他のコントローラからも参照可能
 
   #指定したデータを保存できるよう許可を与える

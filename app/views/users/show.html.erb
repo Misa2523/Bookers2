@@ -57,8 +57,8 @@
 	      <% @books.each do |book| %>   <!--「@books.each」Bookレコードの数だけ繰り返し処理を行う-->
 	      <tbody>
 	      	<tr>
-	      		<td>画像をここに入れる</td>
-	      		<td><%= book.title %>リンク</td>  <!--/books/{id}に飛ぶリンク-->
+	      		<td><%= image_tag @user.get_profile_image(100,100) %></td>
+	      		<td><%= link_to book.title, book_path(book) %></td>
 	      		<td><%= book.body %></td>
 	      	</tr>
 	      </tbody>
