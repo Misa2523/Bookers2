@@ -6,6 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  #アソシエーションの関係（1:Nの1側）
+  has_many :books, dependent: :destroy
+  #dependent: :destroy → 1:Nの1側が削除されたとき、N側を全て削除する
+
   #profile_imageという名前で、ActiveStorageでプロフィール画像を保存できるよう設定
   has_one_attached :profile_image
 

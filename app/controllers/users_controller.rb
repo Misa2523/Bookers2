@@ -2,8 +2,14 @@ class UsersController < ApplicationController
 
   #ログイン直後の表示されるページ
   def show
-    #URLに記載されたIDを参考に必要なUserモデルを取得
+    #URLに記載されたIDを参考に必要なUserモデルを取得（ユーザー情報の表示に使用）
     @user = User.find(params[:id])
+
+    ##データを受け取り新規登録するインスタンス作成（書籍の新規登録に使用）
+    @book = Book.new
+
+    #投稿したBookすべてを表示（書籍の一覧表示に使用）
+    @books = Book.all
   end
 
   def index
