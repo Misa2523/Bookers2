@@ -14,13 +14,9 @@ class UsersController < ApplicationController
 
   #全ユーザーの一覧表示機能
   def index
-    @book.user_id = current_user.id  #空のモデルでは[モデル名].[カラム名]で繋げると保存するカラムの中身を操作できる
+    #@book.user_id = current_user.id  #空のモデルでは[モデル名].[カラム名]で繋げると保存するカラムの中身を操作できる
     #共通部分で使う変数
-    #投稿した人（ログイン中のユーザー）のidを格納
-    @user =
-    @book
-
-    @user = User.find(params[:id])
+    @user = current_user  #投稿者（ログイン中ユーザー）のidを格納
     @book = Book.new
     @books = Book.all
 
