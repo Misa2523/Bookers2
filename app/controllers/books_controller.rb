@@ -4,16 +4,12 @@ class BooksController < ApplicationController
   def index
     #登録した全書籍を格納（booksテーブルに保存されている全てのデータを取得）
     @books = Book.all
-    
-    #@usersに全ての書籍の作成者を格納
+
+    #@usersに書籍の作成者を格納
     @users = User.includes(:books).where(books:{id:@books.pluck(:id)})
-    #User.includes(books)は
-
-    #特定のidのBooksモデルを格納
-    #@book = Book.find(params[:id])
-
-    #書籍の作成者を格納
-    #@user = @book.user
+    #User.includes(books)は、Userモデルと関連しているBooksモデルも併せて取得
+    #where(books:{id:@books.pluck(:id)}は、Booksテーブルのidカラムが、@booksの各書籍IDと一致するUserを取得するための条件
+    #↑今回は、@books.pluck(:id)で@booksの各書籍のIDを取得し、それを元にUserを検索してる
   end
 
   #書籍の詳細画面
@@ -32,8 +28,8 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     #データをデータベースに保存するsaveメソッド実行（不備の確認をしている、なければ保存される）
     @book.save
-    #登録した書籍の詳細画面(books/show.html.erb)へリダイレクト
-    redirect_to book_path(@book.id)
+    #登録した書籍の詳細画面(users/show.html.erb)へリダイレクト
+    redirect_to user_path(@book.user_id)
   end
 
   #書籍の編集画面

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     #URLに記載されたIDを参考に必要なUserモデルを取得（ユーザー情報の表示に使用）
     @user = User.find(params[:id])
 
-    ##データを受け取り新規登録するインスタンス作成（書籍の新規登録に使用）
+    #データを受け取り新規登録するインスタンス作成（書籍の新規登録に使用）
     @book = Book.new
 
     #投稿したBookすべてを表示（書籍の一覧表示に使用）
@@ -14,6 +14,17 @@ class UsersController < ApplicationController
 
   #全ユーザーの一覧表示機能
   def index
+    @book.user_id = current_user.id  #空のモデルでは[モデル名].[カラム名]で繋げると保存するカラムの中身を操作できる
+    #共通部分で使う変数
+    #投稿した人（ログイン中のユーザー）のidを格納
+    @user =
+    @book
+
+    @user = User.find(params[:id])
+    @book = Book.new
+    @books = Book.all
+
+
     #登録した全ユーザーの表示（userテーブルに保存されてる全てのデータを取得）
     @users = User.all
   end

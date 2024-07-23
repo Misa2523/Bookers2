@@ -1,5 +1,9 @@
-<!--全ユーザーが投稿した書籍一覧画面-->
+<!--全ユーザーが投稿した書籍一覧画面（Books画面画面）-->
 
+
+
+
+<!--全ユーザーが投稿した書籍一覧-->
 <div class='col-md-8 offset-md-1'>
   <h2>Books</h2>
     <table class='table table-hover table-inverse'>
@@ -14,6 +18,7 @@
       <% @books.each do |book| %>   <!--「@books.each」Bookレコードの数だけ繰り返し処理を行う-->
       <tbody>
         <tr>
+          <!--book.userは書籍と関連してるUserモデルのインスタンスを取得し、get_profile_image(100,100)はUserモデル内に定義されたメソッド-->
           <td><%= image_tag book.user.get_profile_image(100,100) %></td>
           <!--書籍の詳細ページ(books/show.html.erb)へ遷移-->
           <td><%= link_to book.title, book_path(book) %></td>
