@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   #指定したデータを保存できるよう許可を与える
   def configure_permitted_parameters
-    #sign_up（ユーザ登録）の時にname（ユーザー名）のデータ操作を許可
+    #サインアップ（新規登録）時にemailを許可
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
 

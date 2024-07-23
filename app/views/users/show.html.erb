@@ -42,7 +42,7 @@
 	    	<% end %>
 	  </div>
 
-		<!--投稿した書籍一覧表示-->
+		<!--このユーザーが投稿した書籍一覧表示-->
 	  <div class='col-md-8 offset-md-1'>
 	    <h2>Books</h2>
 	    <table class='table table-hover table-inverse'>
@@ -58,6 +58,7 @@
 	      <tbody>
 	      	<tr>
 	      		<td><%= image_tag @user.get_profile_image(100,100) %></td>
+	      		<!--書籍詳細ページ(books/show.html.erb)へ遷移-->
 	      		<td><%= link_to book.title, book_path(book) %></td>
 	      		<td><%= book.body %></td>
 	      	</tr>

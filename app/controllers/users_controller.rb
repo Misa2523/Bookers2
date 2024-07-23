@@ -12,7 +12,10 @@ class UsersController < ApplicationController
     @books = Book.all
   end
 
+  #全ユーザーの一覧表示機能
   def index
+    #登録した全ユーザーの表示（userテーブルに保存されてる全てのデータを取得）
+    @users = User.all
   end
 
   #ユーザー情報の編集機能

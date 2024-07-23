@@ -47,7 +47,7 @@ Devise.setup do |config|
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
 
-  #ログインの時に何を許可するのか
+  #サインイン（ログイン）・サインアップ（新規登録）時ともにnameを許可
   config.authentication_keys = [:name]
 
   # Configure parameters from the request object used for authentication. Each entry

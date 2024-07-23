@@ -9,11 +9,13 @@
             <tr>
               <!--ユーザー画像、ユーザー名-->
               <td><%= image_tag @user.get_profile_image(100,100) %><br>
+                  <!--ユーザーの詳細画面(users/show.html.erb)へ遷移-->
                   <%= link_to @user.name, user_path(@user.id) %></td>
+              <!--書籍詳細画面(books/show.html.erb)へ遷移-->
               <td><%= link_to @book.title, book_path %></td>
               <td><%= @book.body %></td>
-              <!--編集ボタン-->
-              <td><%= link_to 'Edit', "/books/#{@book.id}/edit" %></td>
+              <!--編集ボタン　書籍編集ページ(books/edit.html.erb)へ遷移-->
+              <td><%= link_to 'Edit', edit_book_path(@book) %></td>
               <!--削除ボタン　destroyはHTTPメソッドがPOSTでなくDELETEのため、HTTPmメソッドをdeleteに指定-->
               <td><%= link_to 'Destroy', book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
             </tr>

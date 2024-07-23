@@ -1,6 +1,19 @@
 class BooksController < ApplicationController
 
+  #書籍の一覧画面
   def index
+    #登録した全書籍を格納（booksテーブルに保存されている全てのデータを取得）
+    @books = Book.all
+    
+    #@usersに全ての書籍の作成者を格納
+    @users = User.includes(:books).where(books:{id:@books.pluck(:id)})
+    #User.includes(books)は
+
+    #特定のidのBooksモデルを格納
+    #@book = Book.find(params[:id])
+
+    #書籍の作成者を格納
+    #@user = @book.user
   end
 
   #書籍の詳細画面

@@ -25,16 +25,19 @@
           <% if user_signed_in? %>   <!--ログイン後のヘッダーメニュー-->
             <li>
               <!--current_userは自分のログインしているユーザーiDを自動で取得-->
+              <!--ユーザー詳細画面(users/show.html.erb)へ遷移-->
               <%= link_to user_path(current_user), class:"nav-link text-light" do %>
                 <i class="fa-solid fa-house"></i> Home
               <% end %>
             </li>
             <li>
+              <!--全ユーザーの一覧画面(users/index.html.erb)へ遷移-->
               <%= link_to users_path, class:"nav-link text-light" do %>
                 <i class="fa-solid fa-link"></i> Users
               <% end %>
             </li>
             <li>
+              <!--書籍の一覧画面(books/index.html.erb)へ遷移-->
               <%= link_to books_path, class:"nav-link text-light" do %>
                 <i class="fa-solid fa-link"></i> Books
               <% end %>
