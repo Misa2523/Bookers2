@@ -2,6 +2,12 @@ class BooksController < ApplicationController
 
   #書籍の一覧画面
   def index
+    #@book.user_id = current_user.id  #空のモデルでは[モデル名].[カラム名]で繋げると保存するカラムの中身を操作できる
+    #共通部分で使う変数
+    @user = current_user  #投稿者（ログイン中ユーザー）のidを格納
+    @book = Book.new
+
+
     #登録した全書籍を格納（booksテーブルに保存されている全てのデータを取得）
     @books = Book.all
 
@@ -14,6 +20,10 @@ class BooksController < ApplicationController
 
   #書籍の詳細画面
   def show
+    #書籍の新規登録で使う変数
+    @book_new = Book.new
+
+
     #特定のidのBooksモデルを格納
     @book = Book.find(params[:id])
     #書籍の作成者を格納
