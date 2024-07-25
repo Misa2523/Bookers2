@@ -13,6 +13,9 @@ class User < ApplicationRecord
   #profile_imageという名前で、ActiveStorageでプロフィール画像を保存できるよう設定
   has_one_attached :profile_image
 
+  #バリデーション設定
+  validates :name, presence: true
+
   #画像が投稿されない場合のエラー回避
   #アクションと違い、特定の処理を名前で呼び出す
   def get_profile_image(width, height)

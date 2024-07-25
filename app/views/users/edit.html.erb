@@ -1,19 +1,38 @@
 <!--ユーザー情報の編集画面-->
 
-<h2>User info</h2>
-
-<%= form_with model: @user do |f| %>
-
-  <label>Name</label>
-  <!--「autofocus: true」ページ読み込み後すぐにautofocus属性を記述している部分にカーソルが移動し入力状態になる-->
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前" %>
-
-  <label for="inputImage">Image</label>
-  <%= f.file_field :profile_image, placeholder:"プロフィール画像", accept: "image/*" %>
-
-  <label>Introduction</label>
-  <%= f.text_area :introduction %>
-
-  <%= f.submit "Update User" %>
-
+<!--バリデーションによるエラーメッセージ表示-->
+<% if @user.errors.any? %>
+  <%= @user.errors.count %> errors prohibited this obj from being saved:
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
+
+<div class='container px-5 px-sm-0'>
+	<div class='row'>
+
+    <div class='col-md-3'><!---->
+
+  <h2>User info</h2>
+
+  <%= form_with model: @user do |f| %>
+
+    <label>Name</label>
+    <!--「autofocus: true」ページ読み込み後すぐにautofocus属性を記述している部分にカーソルが移動し入力状態になる-->
+    <%= f.text_field :name, autofocus: true, id:"inputName" %>
+
+    <label for="inputImage">Image</label>
+    <%= f.file_field :profile_image, placeholder:"プロフィール画像", accept: "image/*" %>
+
+    <label>Introduction</label>
+    <%= f.text_area :introduction %>
+
+    <%= f.submit "Update User" %>
+
+  <% end %>
+
+    </div>
+  </div>
+</div>

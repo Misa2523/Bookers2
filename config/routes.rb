@@ -8,8 +8,5 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show, :create, :edit, :update, :destroy]
   #create：書籍の投稿処理、update：更新処理、destroy：削除処理
 
-      # ↓消す？
-  #get '/about', to: 'pages#about'
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

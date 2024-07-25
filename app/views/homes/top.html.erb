@@ -1,6 +1,12 @@
 <div class="container">
   <div class="row"><!--rowは横並びにしたいコンテンツがある時、それらをrowクラスで囲って使う-->
     <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+
+      <div>
+	      <!--フラッシュメッセージの表示-->
+	      <%= flash[:notice] %>
+      </div>
+
       <!--FontAwesome-->
       <h1>welcome to <i class="fa-solid fa-book"></i><strong>Bookers</strong> !!</h1>
       <p>in <i class="fa-solid fa-book"></i><strong>Bookers</strong>,</p>

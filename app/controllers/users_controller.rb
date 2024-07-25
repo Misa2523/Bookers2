@@ -36,9 +36,15 @@ class UsersController < ApplicationController
     #ユーザーの取得
     @user = User.find(params[:id])
     #ユーザーのアップデート
-    @user.update(user_params)
-    #ユーザーの詳細ページへ遷移
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      #ユーザー情報更新成功のフラッシュメッセージ定義
+      flash[:notice] = "You have updated user successfully."
+      #更新後、ユーザーの詳細画面(users/show.html.erb)へリダイレクト
+      redirect_to user_path(@user.id)
+    else
+      #edit.html.erbを描画
+      render :edit
+    end
   end
 
 
