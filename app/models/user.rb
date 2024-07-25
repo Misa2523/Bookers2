@@ -14,7 +14,12 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   #バリデーション設定
-  validates :name, presence: true
+  #presenceは必須入力、uniqueness:は一意性を持たせる
+  #length: {}は文字数について検証、minimumは最低文字数でmaximumは最大文字数の設定
+  #allow_blank: trueは未入力の場合に無駄な検証をスキップする
+  validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 20, allow_blank: true }
+  validates :introduction, length: { maximum: 50, allow_blank: true}
+
 
   #画像が投稿されない場合のエラー回避
   #アクションと違い、特定の処理を名前で呼び出す

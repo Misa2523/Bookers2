@@ -29,6 +29,12 @@ class UsersController < ApplicationController
   def edit
     #URLを参考に特定のidを持ったレコードを取得
     @user = User.find(params[:id])
+
+    #他人のユーザー情報変更画面に遷移できないようにする
+    #unless @user.id == current_user.id
+    #  #users/show.html.erbに遷移
+    #  redirect_to book_path
+    #end
   end
 
   #更新機能

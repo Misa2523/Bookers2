@@ -51,6 +51,12 @@ class BooksController < ApplicationController
   #書籍の編集画面
   def edit
     @book = Book.find(params[:id])
+
+    #他人のユーザー情報変更画面に遷移できないようにする
+    unless @book.user_id == current_user.id
+      #books/index.html.erbに遷移
+      redirect_to books_path
+    end
   end
 
   #書籍の編集画面での更新アクション
