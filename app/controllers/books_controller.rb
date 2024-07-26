@@ -3,8 +3,9 @@ class BooksController < ApplicationController
   #書籍の一覧画面
   def index
     #共通部分で使う変数
-    @user = current_user  #投稿者（ログイン中ユーザー）のidを格納
+    #@user = current_user  #投稿者（ログイン中ユーザー）のidを格納
     @book = Book.new
+    @user = @book.user
 
     #登録した全書籍を格納（booksテーブルに保存されている全てのデータを取得）
     @books = Book.all

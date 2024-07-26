@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
 
   #他人のユーザー情報変更画面に遷移できないようにする
@@ -66,8 +66,8 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     #上記idとログインしてるユーザーidが一致してなかったら
     unless user.id == current_user.id
-      #users/show.html.erbに遷移
-      redirect_to user_path
+      #users/show.html.erbに遷移（ログインしてるユーザーの詳細画面へ遷移）
+      redirect_to user_path(current_user.id)
     end
   end
 
