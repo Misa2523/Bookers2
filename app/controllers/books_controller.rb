@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     #書籍の新規登録で使う変数
     @book_new = Book.new
 
-    #特定のidのBooksモデルを格納
+    #URLに含まれるidのBooksモデルを格納
     @book = Book.find(params[:id])
     #書籍の作成者を格納
     @user = @book.user
@@ -52,11 +52,8 @@ class BooksController < ApplicationController
   def edit
     @book = Book.find(params[:id])
 
-    #他人のユーザー情報変更画面に遷移できないようにする
-    unless @book.user_id == current_user.id
-      #books/index.html.erbに遷移
-      redirect_to books_path
-    end
+    #private内のメソッド呼び出し（アクセス制限の記述）
+    is_matching_login_user
   end
 
   #書籍の編集画面での更新アクション
@@ -64,6 +61,10 @@ class BooksController < ApplicationController
     #更新後にリダイレクトし、変数をViewファイルに渡す必要がない
     #よってbook変数はupdateアクション内だけで使用するため、ローカル変数としている
     @book = Book.find(params[:id])
+
+    #private内のメソッド呼び出し
+    is_matching_login_user
+
     #データ（レコード）を更新
     if @book.update(book_params)
       #書籍更新成功のフラッシュメッセージ定義
@@ -91,6 +92,18 @@ class BooksController < ApplicationController
 
   def book_params
      params.require(:book).permit(:title, :body)
+  end
+
+  #他人の本の情報変更画面に遷移できないようにする
+  #ログイン中ユーザーidとURLに含まれるidを比較し、一致しなければユーザー詳細ページに移動する処理
+  def is_matching_login_user
+    #その本を投稿したユーザーidを取得
+    user = User.find(@book.user_id)
+    #上記idとログインしてるユーザーidが一致してなかったら
+    unless user.id == current_user.id
+      #books/index.html.erbに遷移
+      redirect_to books_path
+    end
   end
 
 end

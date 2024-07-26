@@ -1,42 +1,46 @@
 <!--部分テンプレートファイル-->
 
-    <!--画面左側-->
-    <div class='col-md-3'>
-			<!--ユーザー情報-->
-	    <h2>User info</h2>
-	    <table class='table'>
-	      <tr>
-					<!--ユーザー画像-->   <!--user：ローカル変数-->
-	        <%= image_tag user.get_profile_image(100,100) %>
-	      </tr>
-	      <tr>
-	        <th>name</th>
-	        <th><%= user.name %></th>
-	      </tr>
-	      <tr>
-	        <th>introduction</th>
-	        <th><%= user.introduction %></th>
-	      </tr>
-	    </table>
-	    <div class='row'>
-	    	<!--編集ボタン-->
-	    	<%= link_to edit_user_path(user) do %>
-	    		<i class="fa-solid fa-user-gear"></i>
-	    	<% end %>
-	    </div>
+<!--画面左側-->
+<div class='col-md-3'>
+	<!--ユーザー情報-->
+	<h2>User info</h2>
+	<table class='table'>
+		<tr>
+			<!--ユーザー画像-->   <!--user：ローカル変数-->
+			<%= image_tag user.get_profile_image(100,100) %>
+		</tr>
+		<tr>
+			<th>name</th>
+			<th><%= user.name %></th>
+		</tr>
+		<tr>
+			<th>introduction</th>
+			<th><%= user.introduction %></th>
+		</tr>
+	</table>
 
-			<!--新規書籍登録-->
-	    <h2 class="mt-3">New book</h2>
-	    <!-- url：どのURLへフォームの情報を送信するか（作成ボタンの押して飛ぶ先のリンクを記述）、method：HTTPメソッドを指定-->
-	    <!-- ↑ rails routesコマンドでリンクを確認する-->
-	    <!-- ↓ book：ローカル変数-->
-	    <%= form_with model: book, url: books_path, method: :post do |f| %>
-	    	<p>Title</p>
-			 	<!--「autofocus: true」ページ読み込み後すぐにautofocus属性を記述している部分にカーソルが移動し入力状態になる-->
-			 	<%= f.text_field :title, autofocus: true, id:"inputTitle" %>
-				<p>Option</p>
-			 	<%= f.text_area :body %>
-				<!--作成ボタン-->
-			 	<%= f.submit "Create Book" %>
-	    <% end %>
-	  </div>
+	<div class='row'>
+		<!--編集ボタン-->
+		<%= link_to edit_user_path(user) do %>
+			<div class="input-group-prepend">
+				<span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-user-gear"></i></span>
+			</div>
+		<% end %>
+	</div>
+
+	<!--新規書籍登録-->
+	<h2 class="mt-3">New book</h2>
+	<!-- url：どのURLへフォームの情報を送信するか（作成ボタンの押して飛ぶ先のリンクを記述）、method：HTTPメソッドを指定-->
+	<!-- ↑ rails routesコマンドでリンクを確認する-->
+	<!-- ↓ book：ローカル変数-->
+	<%= form_with model: book, url: books_path, method: :post do |f| %>
+		<p>Title</p>
+		<!--「autofocus: true」ページ読み込み後すぐにautofocus属性を記述している部分にカーソルが移動し入力状態になる-->
+		<%= f.text_field :title, autofocus: true, id:"inputTitle" %>
+		<p>Option</p>
+		<%= f.text_area :body %>
+		<!--作成ボタン-->
+		<%= f.submit "Create Book" %>
+	<% end %>
+
+</div>

@@ -1,15 +1,20 @@
 class UsersController < ApplicationController
 
+  #コントローラーで各アクション実行前に実行する処理
+  before_action :is_matching_login_user, only: [:edit, :update]
+
+
   #ログイン直後の表示されるページ
   def show
+    #共通部分で使う変数
     #URLに記載されたIDを参考に必要なUserモデルを取得（ユーザー情報の表示に使用）
     @user = User.find(params[:id])
-
     #データを受け取り新規登録するインスタンス作成（書籍の新規登録に使用）
     @book = Book.new
 
-    #投稿したBookすべてを表示（書籍の一覧表示に使用）
-    @books = Book.all
+    #特定のユーザー(@user)に関連付けられた投稿全て(.books)を取得し@booksに渡す（書籍の一覧表示に使用）
+    @books = @user.books
+    # ↑ アソシエーションを持ってるモデル同士の記述方法
   end
 
   #全ユーザーの一覧表示機能
@@ -20,7 +25,6 @@ class UsersController < ApplicationController
     @book = Book.new
     @books = Book.all
 
-
     #登録した全ユーザーの表示（userテーブルに保存されてる全てのデータを取得）
     @users = User.all
   end
@@ -29,12 +33,6 @@ class UsersController < ApplicationController
   def edit
     #URLを参考に特定のidを持ったレコードを取得
     @user = User.find(params[:id])
-
-    #他人のユーザー情報変更画面に遷移できないようにする
-    #unless @user.id == current_user.id
-    #  #users/show.html.erbに遷移
-    #  redirect_to book_path
-    #end
   end
 
   #更新機能
@@ -59,6 +57,18 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :introduction)
+  end
+
+  #他人のユーザー情報変更画面に遷移できないようにする
+  #ログイン中ユーザーidとURLに含まれるidを比較し、一致しなければユーザー詳細ページに移動する処理
+  def is_matching_login_user
+    #URLに含まれるユーザーidを取得
+    user = User.find(params[:id])
+    #上記idとログインしてるユーザーidが一致してなかったら
+    unless user.id == current_user.id
+      #users/show.html.erbに遷移
+      redirect_to user_path
+    end
   end
 
 end
