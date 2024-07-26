@@ -20,12 +20,18 @@
 	</table>
 
 	<div class='row'>
+		<div class='col-md-12'>  <!--ボタンがこの幅いっぱいに広がる-->
+
 		<!--編集ボタン-->
 		<%= link_to edit_user_path(user) do %>
-			<div class="input-group-prepend">
-				<span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-user-gear"></i></span>
-			</div>
+			<!--bt：ボタン、btn-light：ボタンの種類を指定、 btn-outline-secondary：ホバー時に色を変える-->
+			<!--btn-block：ボタンを囲っているdivタグの幅いっぱいに横幅が広がる-->
+			<button type="button" class="btn btn-light btn-outline-secondary btn-block">
+				<i class="fa-solid fa-user-gear"></i>  <!--FontAwesome-->
+			</button>
 		<% end %>
+
+		</div>
 	</div>
 
 	<!--新規書籍登録-->
@@ -40,7 +46,7 @@
 		<p>Option</p>
 		<%= f.text_area :body %>
 		<!--作成ボタン-->
-		<%= f.submit "Create Book" %>
+		<button class="btn btn-success" type="submit">Create Book</button>
 	<% end %>
 
 </div>
