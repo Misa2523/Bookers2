@@ -28,10 +28,14 @@
             <td><%= @book.body %></td>
 
             <% if @user == current_user %>  <!--もし投稿者=現在ログインしてるユーザーなら-->
-              <!--編集ボタン　書籍編集ページ(books/edit.html.erb)へ遷移-->
-              <td><%= link_to 'Edit', edit_book_path(@book) %></td>
-              <!--削除ボタン　destroyはHTTPメソッドがPOSTでなくDELETEのため、HTTPmメソッドをdeleteに指定-->
-              <td><%= link_to 'Destroy', book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
+              <td>  <!--編集ボタン　書籍編集ページ(books/edit.html.erb)へ遷移-->
+                <!--bt：ボタン、btn-sm：ボタンの大きさ(小)、btn-success：ボタンの種類を指定-->
+                <%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success"%>
+              </td>
+              <td>  <!--削除ボタン　destroyはHTTPメソッドがPOSTでなくDELETEのため、HTTPmメソッドをdeleteに指定-->
+                <%= link_to 'Destroy', book_path(@book), class: "btn btn-sm btn-danger",
+                              method: :delete, "data-confirm" => "本当に消しますか？" %>
+              </td>
             <% end %>
           </tr>
         </tbody>

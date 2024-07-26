@@ -44,8 +44,9 @@
             </li>
             <li>
               <!--Log outリンク-->
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa-solid fa-right-from-bracket"></i> Log out
+              <%= link_to destroy_user_session_path, class:"nav-link text-light", method: :delete do %>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Log out
               <% end %>
               <!--link_to "ログアウト", destroy_user_session_path, method: :delete-->
             </li>
