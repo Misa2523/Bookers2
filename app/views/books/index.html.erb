@@ -34,7 +34,12 @@
           <tbody>
             <tr>
               <!--book.userは書籍と関連してるUserモデルのインスタンスを取得し、get_profile_image(100,100)はUserモデル内に定義されたメソッド-->
-              <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+              <td>
+                <%= link_to user_path(book.user) do %>
+                  <%= image_tag book.user.get_profile_image(100,100) %>
+                <% end %>
+              </td>
+              <!--↑プロフィール画像をユーザーの詳細画面へのリンクにする-->
               <!--書籍の詳細ページ(books/show.html.erb)へ遷移-->
               <td><%= link_to book.title, book_path(book) %></td>
               <td><%= book.body %></td>

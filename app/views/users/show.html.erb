@@ -28,7 +28,11 @@
 	      <% @books.each do |book| %>   <!--「@books.each」Bookレコードの数だけ繰り返し処理を行う-->
 	      <tbody>
 	      	<tr>
-	      		<td><%= image_tag @user.get_profile_image(100,100) %></td>
+	      		<td>
+	      			<%= link_to user_path(@user) do %>
+	      				<%= image_tag @user.get_profile_image(100,100) %>
+	      			<% end %>
+	      		</td>
 	      		<!--書籍詳細ページ(books/show.html.erb)へ遷移-->
 	      		<td><%= link_to book.title, book_path(book) %></td>
 	      		<td><%= book.body %></td>
