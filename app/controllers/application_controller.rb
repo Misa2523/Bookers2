@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  protected   #privateとは違い呼び出された他のコントローラからも参照可能
+  protected #privateとは違い呼び出された他のコントローラからも参照可能
 
   #指定したデータを保存できるよう許可を与える
   def configure_permitted_parameters
